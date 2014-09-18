@@ -12,7 +12,7 @@ describe('analytics', function () {
                         callback(undefined, promptResponse);
                     }
                 });
-            },
+            }
         });
     };
 
@@ -36,40 +36,40 @@ describe('analytics', function () {
         it('defaults to false if insight.optOut is true', function () {
             var config = { };
 
-            return mockAnalytics({ optOut: true }).setup(config).then(function () {
-                expect(config.analytics).to.be(false);
+            return mockAnalytics({ optOut: true }).setup(config).then(function (sessionAnalytics) {
+                expect(sessionAnalytics).to.be(false);
             });
         });
 
         it('defaults to true if insight.optOut is false', function () {
             var config = { };
 
-            return mockAnalytics({ optOut: false }).setup(config).then(function () {
-                expect(config.analytics).to.be(true);
+            return mockAnalytics({ optOut: false }).setup(config).then(function (sessionAnalytics) {
+                expect(sessionAnalytics).to.be(true);
             });
         });
 
         it('defaults to true if insight.optOut is undefined and noninteractive', function () {
             var config = { };
 
-            return mockAnalytics({ optOut: undefined }).setup(config).then(function () {
-                expect(config.analytics).to.be(true);
+            return mockAnalytics({ optOut: undefined }).setup(config).then(function (sessionAnalytics) {
+                expect(sessionAnalytics).to.be(true);
             });
         });
 
         it('defautls to true if interactive insights return true from prompt', function () {
             var config = { interactive: true };
 
-            return mockAnalytics({ optOut: undefined }, true).setup(config).then(function () {
-                expect(config.analytics).to.be(true);
+            return mockAnalytics({ optOut: undefined }, true).setup(config).then(function (sessionAnalytics) {
+                expect(sessionAnalytics).to.be(true);
             });
         });
 
         it('defautls to false if interactive insights return false from prompt', function () {
             var config = { interactive: true };
 
-            return mockAnalytics({ optOut: undefined }, false).setup(config).then(function () {
-                expect(config.analytics).to.be(false);
+            return mockAnalytics({ optOut: undefined }, false).setup(config).then(function (sessionAnalytics) {
+                expect(sessionAnalytics).to.be(false);
             });
         });
     });
